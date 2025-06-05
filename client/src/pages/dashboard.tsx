@@ -34,7 +34,7 @@ export default function Dashboard() {
   }, [isAuthenticated, isLoading, toast]);
 
   const { data: dashboardData, isLoading: isDashboardLoading, error } = useQuery({
-    queryKey: ["/api/dashboard"],
+    queryKey: ["/api/demo-dashboard"],
     retry: false,
   });
 

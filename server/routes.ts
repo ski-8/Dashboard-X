@@ -35,6 +35,77 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Development mode: provide dummy user data
+  app.get('/api/auth/demo-user', async (req, res) => {
+    res.json({
+      id: "demo-user-123",
+      username: "demo_user",
+      displayName: "Demo User",
+      role: "admin",
+      clientId: "demo-client-456"
+    });
+  });
+
+  // Dummy analytics data route
+  app.get('/api/demo-dashboard', async (req, res) => {
+    const dummyData = {
+      client: {
+        id: "demo-client-456",
+        name: "Acme Corporation",
+        subdomain: "acme",
+        logo: null,
+        primaryColor: "#2563eb",
+        secondaryColor: "#f1f5f9"
+      },
+      metrics: [
+        // Google Analytics metrics
+        { id: 1, clientId: "demo-client-456", source: "google_analytics", name: "Sessions", value: 12453, unit: "count", date: new Date("2024-01-15") },
+        { id: 2, clientId: "demo-client-456", source: "google_analytics", name: "Page Views", value: 24856, unit: "count", date: new Date("2024-01-15") },
+        { id: 3, clientId: "demo-client-456", source: "google_analytics", name: "Bounce Rate", value: 32.5, unit: "percentage", date: new Date("2024-01-15") },
+        { id: 4, clientId: "demo-client-456", source: "google_analytics", name: "Avg Session Duration", value: 245, unit: "seconds", date: new Date("2024-01-15") },
+        
+        // LinkedIn metrics
+        { id: 5, clientId: "demo-client-456", source: "linkedin", name: "Impressions", value: 15420, unit: "count", date: new Date("2024-01-15") },
+        { id: 6, clientId: "demo-client-456", source: "linkedin", name: "Clicks", value: 892, unit: "count", date: new Date("2024-01-15") },
+        { id: 7, clientId: "demo-client-456", source: "linkedin", name: "Engagement Rate", value: 5.8, unit: "percentage", date: new Date("2024-01-15") },
+        
+        // Call tracking metrics
+        { id: 8, clientId: "demo-client-456", source: "call_tracking", name: "Total Calls", value: 156, unit: "count", date: new Date("2024-01-15") },
+        { id: 9, clientId: "demo-client-456", source: "call_tracking", name: "Qualified Leads", value: 89, unit: "count", date: new Date("2024-01-15") },
+        { id: 10, clientId: "demo-client-456", source: "call_tracking", name: "Conversion Rate", value: 57.1, unit: "percentage", date: new Date("2024-01-15") }
+      ],
+      callAgents: [
+        { id: 1, clientId: "demo-client-456", name: "Sarah Johnson", phone: "+1-555-0123", email: "sarah@acme.com", status: "available", totalCalls: 142, successfulCalls: 98 },
+        { id: 2, clientId: "demo-client-456", name: "Mike Chen", phone: "+1-555-0124", email: "mike@acme.com", status: "busy", totalCalls: 128, successfulCalls: 85 },
+        { id: 3, clientId: "demo-client-456", name: "Emily Rodriguez", phone: "+1-555-0125", email: "emily@acme.com", status: "available", totalCalls: 156, successfulCalls: 112 }
+      ],
+      files: [
+        { id: 1, clientId: "demo-client-456", name: "Q1 Marketing Report.pdf", size: 2450000, mimeType: "application/pdf", uploadedAt: new Date("2024-01-10"), uploadedBy: "Sarah Johnson" },
+        { id: 2, clientId: "demo-client-456", name: "Campaign Assets.zip", size: 15600000, mimeType: "application/zip", uploadedAt: new Date("2024-01-08"), uploadedBy: "Mike Chen" },
+        { id: 3, clientId: "demo-client-456", name: "Brand Guidelines.pdf", size: 8900000, mimeType: "application/pdf", uploadedAt: new Date("2024-01-05"), uploadedBy: "Emily Rodriguez" }
+      ],
+      comments: [
+        { id: 1, clientId: "demo-client-456", content: "The LinkedIn campaign performance has exceeded expectations this month!", author: "Sarah Johnson", createdAt: new Date("2024-01-14T10:30:00") },
+        { id: 2, clientId: "demo-client-456", content: "Need to review the call tracking setup for the new product launch.", author: "Mike Chen", createdAt: new Date("2024-01-13T15:45:00") },
+        { id: 3, clientId: "demo-client-456", content: "Great work on the Q1 report. The analytics insights are very clear.", author: "Emily Rodriguez", createdAt: new Date("2024-01-12T09:15:00") }
+      ],
+      actionItems: [
+        { id: 1, clientId: "demo-client-456", title: "Set up Google Analytics 4 enhanced tracking", description: "Configure advanced e-commerce tracking for better conversion insights", completed: false, dueDate: new Date("2024-01-20"), assignedTo: "Sarah Johnson" },
+        { id: 2, clientId: "demo-client-456", title: "Review LinkedIn ad performance", description: "Analyze Q1 LinkedIn campaign ROI and suggest optimizations", completed: true, dueDate: new Date("2024-01-15"), assignedTo: "Mike Chen" },
+        { id: 3, clientId: "demo-client-456", title: "Update call tracking scripts", description: "Deploy new call tracking codes on landing pages", completed: false, dueDate: new Date("2024-01-18"), assignedTo: "Emily Rodriguez" }
+      ],
+      activities: [
+        { id: 1, clientId: "demo-client-456", type: "metric_update", description: "Google Analytics data refreshed", createdAt: new Date("2024-01-15T08:00:00") },
+        { id: 2, clientId: "demo-client-456", type: "file_upload", description: "Q1 Marketing Report.pdf uploaded by Sarah Johnson", createdAt: new Date("2024-01-10T14:30:00") },
+        { id: 3, clientId: "demo-client-456", type: "comment_added", description: "New comment added by Mike Chen", createdAt: new Date("2024-01-13T15:45:00") },
+        { id: 4, clientId: "demo-client-456", type: "action_completed", description: "LinkedIn ad performance review completed", createdAt: new Date("2024-01-15T11:20:00") },
+        { id: 5, clientId: "demo-client-456", type: "call_received", description: "New qualified lead call received", createdAt: new Date("2024-01-15T16:45:00") }
+      ]
+    };
+    
+    res.json(dummyData);
+  });
+
   // Dashboard data route
   app.get('/api/dashboard', isAuthenticated, async (req: any, res) => {
     try {
