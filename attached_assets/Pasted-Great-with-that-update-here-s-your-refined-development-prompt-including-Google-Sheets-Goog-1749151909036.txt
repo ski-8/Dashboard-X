@@ -1,0 +1,107 @@
+Great — with that update, here's your **refined development prompt** including **Google Sheets, Google Analytics, LinkedIn**, and **calling agent metrics**:
+
+---
+
+### 🔧 UPDATED DEVELOPMENT PROMPT
+
+**Project Title:** Unified Client Portal Dashboard – Live Metrics from Multiple Sources
+
+---
+
+### 🧭 Objective:
+
+Build a secure, scalable **client portal** where each client can **log in** to view their **marketing and performance metrics**.
+The dashboard will pull **live or regularly updated data** from:
+
+1. **Google Sheets** (custom/internal data)
+2. **Google Analytics (GA4)** (web traffic & conversion data)
+3. **LinkedIn Ads or LinkedIn Analytics**
+4. **Call Tracking Agent Data** (e.g., daily calls, outcomes, conversion per rep)
+
+---
+
+### 📊 Core Features:
+
+#### 1. **User Authentication**
+
+* Email/password login (preferably with Firebase Auth or OAuth)
+* Each client sees **only their data**
+* Admin panel with full visibility into all accounts
+
+#### 2. **Data Sources & Integrations**
+
+* **Google Sheets**: Connected as a live backend or synced periodically.
+* **Google Analytics (GA4)**:
+
+  * Metrics: Sessions, Users, Bounce Rate, Goals, Events
+  * Filter by property and date range
+* **LinkedIn**:
+
+  * Organic: Reach, engagement, follower growth
+  * Ads: Impressions, clicks, CPC, spend, conversions
+  * Use LinkedIn API or Supermetrics connector
+* **Call Agent Metrics**:
+
+  * Daily/weekly/monthly calls
+  * Call outcomes (lead, not interested, follow-up)
+  * Individual agent performance (optional)
+  * Pulled from Google Sheet, CSV, or CRM system (based on availability)
+
+#### 3. **Dashboard Design**
+
+* Sections per data source:
+
+  * Website performance (Google Analytics)
+  * Social performance (LinkedIn)
+  * Custom/internal metrics (Google Sheet)
+  * Agent performance (Call data)
+* KPI cards, charts (line, bar, pie), and tables
+* Time filters (Today, Last 7 days, Month to date, Custom)
+* Optional: Export to PDF/CSV
+
+#### 4. **Data Sync & Refresh**
+
+* Google Sheets: Realtime sync or fetch every 5–10 minutes
+* Google Analytics & LinkedIn: Daily or hourly refresh (API limit dependent)
+* Call Agent data: Manual update or automated script (if synced to sheet)
+
+#### 5. **Client View & Access**
+
+* Clean, responsive dashboard per client
+* Welcome message with client name
+* “Last updated” timestamp for transparency
+* Option to leave comments/feedback
+
+#### 6. **Admin Dashboard**
+
+* Master view of all clients’ performance
+* Add/edit/remove clients
+* Trigger manual data refresh if needed
+* User management
+
+---
+
+### 💡 Optional Features (Phase 2)
+
+* Email summary reports
+* Alerts for major changes (spike/drop in metrics)
+* Client file download/upload section
+* Integration with HubSpot, Salesforce, etc.
+* Chat support or ticket system
+
+---
+
+### ⚙️ Recommended Tech Stack
+
+| Feature          | Tech                                                                      |
+| ---------------- | ------------------------------------------------------------------------- |
+| Frontend         | React.js / Next.js / Glide (for no-code)                                  |
+| Backend          | Firebase / Node.js                                                        |
+| Auth             | Firebase Authentication                                                   |
+| Data Connections | Google Sheets API, Google Analytics Reporting API, LinkedIn Marketing API |
+| Hosting          | Firebase Hosting / Vercel / Netlify                                       |
+| No-Code Option   | Stacker or Softr + Make/Zapier for API pulls                              |
+
+---
+
+Would you like me to turn this into a ready-to-use **project spec document** or write a **developer brief with API endpoints** and UI mockups/wireframes?
