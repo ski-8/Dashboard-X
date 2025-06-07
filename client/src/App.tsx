@@ -10,6 +10,11 @@ import { useAnalytics } from "./hooks/use-analytics";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 import Dashboard from "@/pages/dashboard";
+import Analytics from "@/pages/analytics";
+import LinkedinAnalytics from "@/pages/linkedin";
+import CallTracking from "@/pages/call-tracking";
+import Reports from "@/pages/reports";
+import Files from "@/pages/files";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -24,6 +29,11 @@ function Router() {
       ) : (
         <>
           <Route path="/" component={Dashboard} />
+          <Route path="/analytics" component={Analytics} />
+          <Route path="/linkedin" component={LinkedinAnalytics} />
+          <Route path="/call-tracking" component={CallTracking} />
+          <Route path="/reports" component={Reports} />
+          <Route path="/files" component={Files} />
         </>
       )}
       <Route component={NotFound} />
