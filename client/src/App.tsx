@@ -29,11 +29,6 @@ function Router() {
       ) : (
         <>
           <Route path="/" component={Dashboard} />
-          <Route path="/analytics" component={Analytics} />
-          <Route path="/linkedin" component={LinkedinAnalytics} />
-          <Route path="/call-tracking" component={CallTracking} />
-          <Route path="/reports" component={Reports} />
-          <Route path="/files" component={Files} />
         </>
       )}
       <Route component={NotFound} />

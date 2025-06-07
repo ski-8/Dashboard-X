@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { BarChart3, TrendingUp, Users, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import DashboardLayout from "@/components/layout";
 
 export default function Analytics() {
   const { data: dashboardData, isLoading } = useQuery({
@@ -11,22 +12,24 @@ export default function Analytics() {
 
   if (isLoading) {
     return (
-      <div className="p-4 md:p-6 space-y-6">
-        <div className="flex items-center space-x-2">
-          <BarChart3 className="h-6 w-6" />
-          <h1 className="text-2xl font-bold">Analytics</h1>
+      <DashboardLayout>
+        <div className="p-4 md:p-6 space-y-6">
+          <div className="flex items-center space-x-2">
+            <BarChart3 className="h-6 w-6" />
+            <h1 className="text-2xl font-bold">Analytics</h1>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[...Array(4)].map((_, i) => (
+              <Card key={i} className="animate-pulse">
+                <CardContent className="p-6">
+                  <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                  <div className="h-8 bg-gray-200 rounded w-1/2"></div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[...Array(4)].map((_, i) => (
-            <Card key={i} className="animate-pulse">
-              <CardContent className="p-6">
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div className="h-8 bg-gray-200 rounded w-1/2"></div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
+      </DashboardLayout>
     );
   }
 
@@ -35,17 +38,18 @@ export default function Analytics() {
   ) || [];
 
   return (
-    <div className="p-4 md:p-6 space-y-6">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
-        <div className="flex items-center space-x-2">
-          <BarChart3 className="h-6 w-6 text-blue-600" />
-          <h1 className="text-2xl font-bold">Google Analytics</h1>
+    <DashboardLayout>
+      <div className="p-4 md:p-6 space-y-6">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
+          <div className="flex items-center space-x-2">
+            <BarChart3 className="h-6 w-6 text-blue-600" />
+            <h1 className="text-2xl font-bold">Google Analytics</h1>
+          </div>
+          <Badge variant="secondary" className="w-fit">
+            Last updated: {new Date().toLocaleDateString()}
+          </Badge>
         </div>
-        <Badge variant="secondary" className="w-fit">
-          Last updated: {new Date().toLocaleDateString()}
-        </Badge>
-      </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -132,7 +136,8 @@ export default function Analytics() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
